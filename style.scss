@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css?family=Rozha+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', serif;
+    background: #000000;
+}
+
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.7);
+    position: fixed;
+    z-index: 9999;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #D4AF37;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform .15s ease, background .15s;
+}
+
+button:hover {
+    background: #1E3A8A;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+// ===================================
+// EFECTOS DE TEXTO DORADO
+// ===================================
+
+.gold-text {
+    font-family: 'Rozha One', serif;
+    font-weight: normal;
+    text-align: center;
+    color: #D4AF37; // Fallback si la imagen no carga
+
+    // Efecto con imagen de textura dorada
+    background: url("gold-leaf.jpg") repeat;
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    // Alternativa con degradado dorado si no hay imagen
+    background-image: url("gold-leaf.jpg"),
+        linear-gradient(45deg, #B8860B 0%, #FFD700 25%, #FFFF00 50%, #FFD700 75%, #B8860B 100%);
+
+    // Sombra para dar profundidad
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+    // Animación sutil
+    animation: goldShine 3s ease-in-out infinite;
+}
+
+.gold-text-gradient {
+    font-weight: normal;
+    text-align: center;
+    background: linear-gradient(45deg, #8B7355 0%, #D4AF37 20%, #FFD700 40%, #FFFF88 50%, #FFD700 60%, #D4AF37 80%, #8B7355 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: goldFlow 4s ease-in-out infinite;
+}
+
+.purple-text {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+// ===================================
+// ANIMACIONES DORADAS
+// ===================================
+
+@keyframes goldShine {
+
+    0%,
+    100% {
+        filter: brightness(1) contrast(1);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        filter: brightness(1.2) contrast(1.1);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+}
+
+@keyframes goldFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+
+// ===================================
+// SECCIÓN SALUDO
+// ===================================
+
+.saludo {
+    .info {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 200px;
+        margin: auto;
+        padding-bottom: 30px;
+        margin-top: -100px;
+    }
+
+    background: url(fondo.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+
+
+    h1 {
+        font-family: "Montecarlo", cursive;
+        font-weight: bold;
+        font-size: clamp(5rem, 8vw, 12rem);
+        line-height: 1;
+        position: relative;
+    }
+
+    .terno {
+        position: relative;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    h3 {
+        font-family: "Montecarlo", cursive;
+        font-weight: bold;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        color: #fff;
+    }
+
+    h5 {
+        font-family: "Rozha One", serif;
+        color: #fff;
+        border-top: 2px solid #B8860B;
+        border-bottom: 2px solid #B8860B;
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: normal;
+        max-width: fit-content;
+        padding: 1rem 2rem;
+    }
+
+    .cincuenta {
+        max-width: 150px;
+    }
+
+    // Lista con iconos (r3)
+    .r3 {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        li {
+            margin: 0;
+        }
+
+        img {
+            max-width: 60px;
+            height: auto;
+        }
+    }
+
+    .nofaltes {
+        font-weight: bold;
+        font-family: "Montecarlo", cursive;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    // Lista de enlaces (links)
+    .links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        li {
+            margin: 0;
+        }
+
+        a {
+            display: inline-block;
+            border: 2px solid #B8860B;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #B8860B;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(184, 134, 11, 0.3);
+            }
+        }
+    }
+
+    // Responsive
+    @media (max-width: 768px) {
+        padding: 1rem;
+
+        .r3,
+        .links {
+            gap: 1rem;
+        }
+
+        .links {
+
+            a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}

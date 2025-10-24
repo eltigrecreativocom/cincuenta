@@ -1,0 +1,93 @@
+{
+    "saludo": {
+        "imagen": "1.png",
+        "titulo": "¡Celebremos Juntos mis 50 Años!",
+        "mensaje": "Con mucha alegría te invito a celebrar conmigo esta fecha tan especial. Tu presencia será el mejor regalo.",
+        "nombreHomenajeado": "Tito Sarzo Palomino"
+    },
+    "presentacion": {
+        "entrada": "Medio siglo de vida, amor y bendiciones...",
+        "frase": "50 años de experiencias, logros y momentos inolvidables",
+        "fraseDestacada": "¡Es hora de celebrar en grande!"
+    },
+    "padres": {
+        "titulo": "Te invita:",
+        "nombres": "Tito Sarzo Palomino",
+        "fraseInvitacion": "Acompáñame en esta celebración tan especial",
+        "imagen": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=face"
+    },
+    "evento": {
+        "fecha": {
+            "diaSemana": "Sábado",
+            "dia": "25",
+            "mes": "Enero 2025",
+            "hora": "7:00 PM"
+        },
+        "lugarPrincipal": {
+            "icono": "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+            "titulo": "Salón de Recepciones",
+            "lugar": "SALON DE RECEPCIONES JVC - Av. Yurumayo, San Martín de Porres 15113",
+            "urlMapa": "https://www.google.com/maps/place/SALON+DE+RECEPCIONES+JVC/@-11.961818,-77.0856268,17z/data=!3m1!4b1!4m6!3m5!1s0x9105cf0d3c32844b:0x505eeba10b403237!8m2!3d-11.961818!4d-77.0856268!16s%2Fg%2F11xljkq_z4?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"
+        }
+    },
+    "itinerario": [
+        {
+            "etapa": "Recepción de invitados",
+            "descripcion": "Te damos la bienvenida con alegría",
+            "hora": "7:00 PM"
+        },
+        {
+            "etapa": "Cóctel de bienvenida",
+            "descripcion": "Brindemos juntos por este momento especial",
+            "hora": "7:30 PM"
+        },
+        {
+            "etapa": "Palabras del homenajeado",
+            "descripcion": "Compartiendo momentos y agradecimientos",
+            "hora": "8:30 PM"
+        },
+        {
+            "etapa": "Cena buffet",
+            "descripción": "Disfrutemos de una deliciosa cena",
+            "hora": "9:00 PM"
+        },
+        {
+            "etapa": "Baile y música",
+            "descripcion": "¡A celebrar con la mejor música!",
+            "hora": "10:30 PM"
+        },
+        {
+            "etapa": "Brindis especial",
+            "descripción": "El momento más emotivo de la noche",
+            "hora": "12:00 AM"
+        }
+    ],
+    "codigoVestimenta": {
+        "imagen": "https://cdn-icons-png.flaticon.com/512/2503/2503520.png",
+        "tipo": "Elegante Sport",
+        "colores": [
+            "Azul",
+            "Blanco",
+            "Negro"
+        ],
+        "descripcion": "Evitar colores muy llamativos"
+    },
+    "regalos": {
+        "titulo": "💝 Lluvia de Sobres",
+        "descripcion": "Si deseas obsequiarme algo especial:",
+        "yape": {
+            "numero": "999-999-999",
+            "nombre": "Tito Sarzo Palomino"
+        },
+        "banco": {
+            "entidad": "Banco de Crédito del Perú",
+            "cuenta": "123-456789-0-12",
+            "cci": "002-123456789012345678",
+            "titular": "Tito Sarzo Palomino"
+        }
+    },
+    "agradecimiento": {
+        "imagen": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop",
+        "mensaje": "Gracias por ser parte de esta celebración tan especial. Tu presencia hace que este momento sea perfecto. ¡Nos vemos en la fiesta!"
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación - 50 Años de Tito Sarzo</title>
+    <!-- UIkit CSS -->
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Delius&family=Great+Vibes&family=Meow+Script&family=MonteCarlo&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+
+
+</head>
+
+<body>
+    <!-- Modal de bienvenida -->
+    <div id="modal-invitacion"
+        style="position:fixed;z-index:99999;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg, #000000, #000000);display:flex;align-items:center;justify-content:center;flex-direction:column;color:white;">
+        <h1
+            style="font-family:'Montecarlo',cursive;font-size:3.5rem;margin-bottom:2rem;text-shadow:2px 2px 4px rgba(0,0,0,0.5);">
+            ¡Bienvenido!</h1>
+        <p style="font-size:1.5rem;margin-bottom:2rem;text-align:center;max-width:500px;">Estás invitado a celebrar los
+            50 años de Tito Sarzo</p>
+        <button id="btn-ver-invitacion"
+            style="font-size:1.3rem;padding:1rem 2.5rem;background:rgba(255,255,255,0.2);color:#fff;border:2px solid white;border-radius:2rem;cursor:pointer;font-family:'Lora',serif;width: 100%;backdrop-filter:blur(10px);transition:all 0.3s;">Ver
+            Invitación</button>
+    </div>
+
+    <div id="contenido">
+        <!-- SALUDO -->
+        <section saludo class="saludo">
+
+            <!-- Con imagen de textura -->
+            <!--h1 id="gold-text">50 AÑOS</h1-->
+            <img src="1.png" alt="Tito Sarzo" class="animate terno" data-swiper-parallax="-600">
+            <div class="info">
+                <!-- Solo con degradado -->
+                <h1 class="gold-text">Tito</h1>
+
+                <!-- Texto morado -->
+                <p class="purple-text">CELEBREMOS JUNTOS</p>
+                <h3>Mi cumpleaños</h3>
+                <img src="50.png" alt="50 años" class="cincuenta">
+                <h5>Sábado 25 de Julio</h5>
+                <p>LUGAR: SALON DE RECEPCIONES JVC - Av. Yurumayo, San Martín de Porres 15113</p>
+                <ul class="r3">
+                    <li>
+                        <img src="c.svg" alt="">
+                        <p>lluvia de sobres</p>
+                    </li>
+                    <li>
+                        <img src="codes.svg" alt="">
+                        <p>Vestimenta elegante</p>
+                    </li>
+                </ul>
+                <ul class="links">
+                    <li><a href="#">Ver ubicación</a></li>
+                    <li><a href="#">Confirmar asistencia</a></li>
+                </ul>
+
+                <P class="nofaltes">No faltes</P>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Reproductor de música -->
+    <div class="player" role="region" aria-label="Reproductor de música">
+        <audio id="audio" preload="metadata">
+            <source src="musica.mp3" type="audio/mp3">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+        <button id="playPause" aria-label="Reproducir" title="Reproducir">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+
+
+        // Reproductor de música
+        const audio = document.getElementById('audio');
+        const btn = document.getElementById('playPause');
+
+        const playSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7L8 5z" fill="currentColor"/></svg>`;
+        const pauseSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>`;
+
+        btn.innerHTML = playSVG;
+
+        btn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = pauseSVG;
+                btn.setAttribute('aria-label', 'Pausar');
+            } else {
+                audio.pause();
+                btn.innerHTML = playSVG;
+                btn.setAttribute('aria-label', 'Reproducir');
+            }
+        });
+
+        // Modal de bienvenida
+        const modal = document.getElementById('modal-invitacion');
+        const btnVer = document.getElementById('btn-ver-invitacion');
+
+        btnVer.addEventListener('click', function () {
+            modal.style.display = 'none';
+            // Iniciar música automáticamente
+            audio.play().then(() => {
+                btn.innerHTML = pauseSVG;
+                btn.setAttribute('aria-label', 'Pausar');
+            }).catch(() => {
+                console.log('Autoplay bloqueado por el navegador');
+            });
+        });
+    </script>
+</body>
+</body>
+
+</html>
