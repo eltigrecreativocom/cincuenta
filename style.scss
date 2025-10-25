@@ -79,7 +79,6 @@ button:active {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
     // Animación sutil
-    animation: goldShine 3s ease-in-out infinite;
 }
 
 .gold-text-gradient {
@@ -146,7 +145,7 @@ button:active {
         max-width: 266px;
         margin: auto;
         padding-bottom: 30px;
-        gap: 15px;
+        gap: 3px;
     }
 
     background: url(fondo.png);
@@ -158,7 +157,7 @@ button:active {
     h1 {
         font-family: "Montecarlo", cursive;
         font-weight: bold;
-        font-size: clamp(5.5rem, 8vw, 12rem);
+        font-size: clamp(2.6rem, 8vw, 12rem);
         line-height: 1;
         position: relative;
     }

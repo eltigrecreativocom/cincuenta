@@ -16,7 +16,104 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
 
+    <style>
+        /* ====== CALENDARIO ====== */
+        .mini-calendario {
+            --bg: #f7f4f1;
+            --dark: #d9ab2b;
+            --month: #c09a31;
+            --accent: #d9ab2b;
+            --colortexto: #fff;
 
+            font-family: "Montserrat", sans-serif;
+            display: inline-block;
+            text-align: center;
+            padding: 20px;
+            max-width: 300px;
+        }
+
+        .mini-calendario__mes {
+            text-transform: uppercase;
+            color: var(--month);
+            font-weight: 700;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .mini-calendario__fila {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .mini-calendario__lado {
+            width: 140px;
+            height: 62px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mini-calendario__lado::before,
+        .mini-calendario__lado::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 1px;
+            border-radius: 999px;
+            background: var(--dark);
+        }
+
+        .mini-calendario__lado::before {
+            top: 10px;
+        }
+
+        .mini-calendario__lado::after {
+            bottom: 10px;
+        }
+
+        .mini-calendario__texto {
+            position: relative;
+            z-index: 2;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--colortexto);
+        }
+
+        .mini-calendario__numero {
+            font-size: 56px;
+            line-height: 1;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        @media (max-width: 360px) {
+            .mini-calendario__fila {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .mini-calendario__lado {
+                width: 100%;
+                height: 48px;
+            }
+
+            .mini-calendario__lado::before,
+            .mini-calendario__lado::after {
+                width: 120px;
+            }
+
+            .mini-calendario__numero {
+                font-size: 44px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -42,12 +139,32 @@
             <img src="1.png" alt="Tito Sarzo" class="animate terno" data-swiper-parallax="-600">
             <div class="info">
                 <!-- Solo con degradado -->
-                <h1 class="gold-text">Tito</h1>
+                <h1 class="gold-text">Tito Rafael</h1>
 
-                <!-- Texto morado -->
-                <p class="purple-text">CELEBREMOS JUNTOS</p>
-                <h3>Mi cumpleaños</h3>
-                <img src="50.png" alt="50 años" class="cincuenta">
+                <p>Este año es muy especial, celebro cincuenta años de vida marcados por historias y aprendizajes. Con
+                    gratitud deseo compartir esta fecha con mi familia y amigos, para disfrutar juntos de una noche
+                    llena de alegría, buena música y recuerdos que perdurarán por siempre.</p>
+                <!--h3>Mi cumpleaños</h3-->
+                <!-- <img src="50.png" alt="50 años" class="cincuenta"> -->
+
+                <div class="mini-calendario animate-slide-right animate-slow delay-500 scrollspy-animated"
+                    data-scrollspy="animation: slide-right; delay: 500; speed: slow"
+                    style="transition: transform 0.3s, filter 0.3s; transform: translateY(0px) scale(1); filter: brightness(1) drop-shadow(rgba(0, 0, 0, 0.05) 0px 2px 4px);">
+                    <div class="mini-calendario__mes" data-calendario="mes">Sábado</div>
+
+                    <div class="mini-calendario__fila">
+                        <div class="mini-calendario__lado">
+                            <span class="mini-calendario__texto" data-calendario="dia-semana">DICIEMBRE</span>
+                        </div>
+
+                        <div class="mini-calendario__numero" data-calendario="dia">6</div>
+
+                        <div class="mini-calendario__lado">
+                            <span class="mini-calendario__texto" data-calendario="año">2025</span>
+                        </div>
+                    </div>
+                </div>
+
                 <h5>Sábado 25 de Julio</h5>
                 <p>LUGAR: SALON DE RECEPCIONES JVC - Av. Yurumayo, San Martín de Porres 15113</p>
                 <ul class="r3">
