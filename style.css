@@ -10,6 +10,7 @@
 body {
   font-family: "Lora", serif;
   background: #000000;
+  background: url(base.png);
 }
 
 .player {
@@ -114,16 +115,14 @@ button:active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
-  max-width: 200px;
+  max-width: 266px;
   margin: auto;
   padding-bottom: 30px;
-  margin-top: -100px;
 }
 .saludo h1 {
   font-family: "Montecarlo", cursive;
   font-weight: bold;
-  font-size: clamp(5rem, 8vw, 12rem);
+  font-size: clamp(5.5rem, 8vw, 12rem);
   line-height: 1;
   position: relative;
 }
@@ -151,10 +150,10 @@ button:active {
   font-weight: normal;
   max-width: -moz-fit-content;
   max-width: fit-content;
-  padding: 1rem 2rem;
+  padding: 0 15px;
 }
 .saludo .cincuenta {
-  max-width: 150px;
+  max-width: 140px;
 }
 .saludo .r3 {
   display: flex;
@@ -168,13 +167,13 @@ button:active {
   margin: 0;
 }
 .saludo .r3 img {
-  max-width: 60px;
+  max-width: 30px;
   height: auto;
 }
 .saludo .nofaltes {
   font-weight: bold;
   font-family: "Montecarlo", cursive;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: 20px;
 }
 .saludo .links {
   display: flex;
@@ -190,12 +189,12 @@ button:active {
 .saludo .links a {
   display: inline-block;
   border: 2px solid #B8860B;
-  padding: 1rem 2rem;
-  border-radius: 15px;
+  padding: 5px;
+  border-radius: 8px;
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 11px;
   transition: all 0.3s ease;
 }
 .saludo .links a:hover {
