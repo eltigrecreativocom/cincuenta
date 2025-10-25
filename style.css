@@ -118,6 +118,7 @@ button:active {
   max-width: 266px;
   margin: auto;
   padding-bottom: 30px;
+  gap: 15px;
 }
 .saludo h1 {
   font-family: "Montecarlo", cursive;
