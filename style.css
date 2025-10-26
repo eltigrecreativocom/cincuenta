@@ -190,8 +190,7 @@ button:active {
   margin: 0;
 }
 .saludo .r3 img {
-  max-width: 30px;
-  height: auto;
+  height: 40px;
 }
 .saludo .nofaltes {
   font-weight: bold;
