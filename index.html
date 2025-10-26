@@ -22,7 +22,7 @@
 <body>
 
     <!-- Modal de bienvenida -->
-    <div id="modal-invitacion" class="modal">
+    <div id="modal-invitacion" class="modal" data-modal="welcome">
         <img src="lineas.svg" class="lineas" alt="">
         <img src="nombres.svg" class="nombre" alt="">
         <br>
@@ -30,8 +30,11 @@
         <button id="btn-ver-invitacion"><img src="carta.png" class="carta" alt=""></button>
     </div>
 
+    <!-- Lightbox para efecto fade -->
+    <div class="lightbox" id="fade-lightbox"></div>
+
     <!-- Modal de Yape -->
-    <div id="modal-yape" class="modal-yape" style="display: none;">
+    <div id="modal-yape" class="modal-yape" data-modal="yape" style="display: none;">
         <div class="modal-yape-content">
             <div class="modal-yape-header">
                 <h2 class="gold-text">💝 Lluvia de Sobres 💝</h2>
@@ -109,7 +112,7 @@
     </div>
 
     <!-- Reproductor de música -->
-    <div class="player" role="region" aria-label="Reproductor de música">
+    <div class="player" role="region" style="display: none;" aria-label="Reproductor de música">
         <audio id="audio" preload="metadata">
             <source src="musica.mp3" type="audio/mp3">
             Tu navegador no soporta el elemento de audio.
@@ -146,30 +149,105 @@
             }
         });
 
-        // Modal de bienvenida
+        // Modal de bienvenida con efecto fade
         const modal = document.getElementById('modal-invitacion');
         const btnVer = document.getElementById('btn-ver-invitacion');
+        const fadeLightbox = document.getElementById('fade-lightbox');
 
-        btnVer.addEventListener('click', function () {
-            // Añadir clase de cierre para transición suave
-            modal.classList.add('closing');
+        // Función para activar efecto fade al cerrar modal de bienvenida
+        function cerrarModalBienvenida() {
+            // Activar lightbox fade
+            fadeLightbox.classList.add('fade-opening');
 
-            // Después de la transición, ocultar completamente
+            // Después del efecto fade, ocultar modal
             setTimeout(() => {
-                modal.style.display = 'none';
-                // Mostrar el reproductor de música con transición suave
+                modal.classList.add('closing');
+
+                setTimeout(() => {
+                    modal.style.display = 'none';
+
+                    // Mostrar y animar el contenido principal
+                    mostrarContenidoAnimado();
+
+                    // Cerrar lightbox
+                    setTimeout(() => {
+                        fadeLightbox.classList.remove('fade-opening');
+                        fadeLightbox.classList.add('fade-closing');
+
+                        setTimeout(() => {
+                            fadeLightbox.classList.remove('fade-closing');
+                        }, 600);
+                    }, 300);
+
+                }, 500);
+            }, 300); // Tiempo más corto para el fade
+        }
+
+        // Función para animar el contenido principal paso a paso
+        function mostrarContenidoAnimado() {
+            const contenido = document.getElementById('contenido');
+
+            // Elementos que se van a animar en orden específico
+            const elementosAnimacion = [
+                { selector: '.terno', delay: 500 },
+                { selector: '.saludo h1', delay: 800 },
+                { selector: '.saludo .info > p:first-of-type', delay: 1100 },
+                { selector: '.fechacruz', delay: 1400 },
+                { selector: '.fechacruz .dia', delay: 1600 },
+                { selector: '.fechacruz .g3 .item:first-child', delay: 1700 },
+                { selector: '.fechacruz .g3 .d2', delay: 1800 },
+                { selector: '.fechacruz .g3 .item:last-child', delay: 1900 },
+                { selector: '.saludo .info > p:nth-of-type(2)', delay: 2100 },
+                { selector: '.r3', delay: 2400 },
+                { selector: '.r3 li:first-child', delay: 2600 },
+                { selector: '.r3 li:first-child img', delay: 2700 },
+                { selector: '.r3 li:first-child p', delay: 2800 },
+                { selector: '.r3 li:last-child', delay: 2900 },
+                { selector: '.r3 li:last-child img', delay: 3000 },
+                { selector: '.r3 li:last-child p', delay: 3100 },
+                { selector: '.links', delay: 3400 },
+                { selector: '.links li:first-child', delay: 3600 },
+                { selector: '.links li:last-child', delay: 3800 },
+                { selector: '.nofaltes', delay: 4100 }
+            ];
+
+            // Mostrar el contenedor principal primero
+            setTimeout(() => {
+                contenido.classList.add('contenido-visible');
+            }, 200);
+
+            // Animar cada elemento en secuencia
+            elementosAnimacion.forEach((item) => {
+                setTimeout(() => {
+                    const elemento = document.querySelector(item.selector);
+                    if (elemento) {
+                        elemento.classList.add('animate-in');
+                        console.log(`Animando: ${item.selector}`); // Para debug
+                    } else {
+                        console.log(`No encontrado: ${item.selector}`); // Para debug
+                    }
+                }, item.delay);
+            });
+
+            // Mostrar y animar el reproductor al final
+            setTimeout(() => {
                 const player = document.querySelector('.player');
                 if (player) {
                     player.style.display = 'flex';
                     player.style.opacity = '0';
-                    player.style.transform = 'scale(0.8)';
+                    player.style.transform = 'scale(0.8) translateY(20px)';
+                    player.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
                     setTimeout(() => {
-                        player.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                         player.style.opacity = '1';
-                        player.style.transform = 'scale(1)';
-                    }, 100);
+                        player.style.transform = 'scale(1) translateY(0)';
+                    }, 50);
                 }
-            }, 500); // Duración de la transición CSS
+            }, 4500);
+        }
+
+        btnVer.addEventListener('click', function () {
+            cerrarModalBienvenida();
 
             // Iniciar música automáticamente
             audio.play().then(() => {
@@ -180,30 +258,60 @@
             });
         });
 
-        // Modal de Yape
+        // Modal de Yape con efecto fade
         const modalYape = document.getElementById('modal-yape');
         const btnLluviaSobres = document.getElementById('lluvia-sobres-btn');
         const btnCerrarYape = document.getElementById('cerrar-modal-yape');
 
-        // Función para abrir modal Yape
+        // Función para abrir modal Yape con efecto fade
         function abrirModalYape() {
-            modalYape.style.display = 'flex';
-            // Pequeño delay para asegurar que el display: flex se aplique antes de la animación
+            // Activar lightbox fade
+            fadeLightbox.classList.add('fade-opening');
+
+            // Después del efecto fade, mostrar modal
             setTimeout(() => {
-                modalYape.classList.add('show');
-            }, 10);
+                modalYape.style.display = 'flex';
+                setTimeout(() => {
+                    modalYape.classList.add('show');
+                }, 10);
+
+                // Cerrar lightbox
+                setTimeout(() => {
+                    fadeLightbox.classList.remove('fade-opening');
+                    fadeLightbox.classList.add('fade-closing');
+
+                    setTimeout(() => {
+                        fadeLightbox.classList.remove('fade-closing');
+                    }, 600);
+                }, 200);
+            }, 300); // Tiempo más corto para el fade
         }
 
-        // Función para cerrar modal Yape
+        // Función para cerrar modal Yape con efecto fade
         function cerrarModalYape() {
-            modalYape.classList.remove('show');
-            modalYape.classList.add('closing');
+            // Activar lightbox fade
+            fadeLightbox.classList.add('fade-opening');
 
-            // Después de la transición, ocultar completamente
+            // Después del efecto fade, ocultar modal
             setTimeout(() => {
-                modalYape.style.display = 'none';
-                modalYape.classList.remove('closing');
-            }, 400); // Duración de la transición CSS
+                modalYape.classList.remove('show');
+                modalYape.classList.add('closing');
+
+                setTimeout(() => {
+                    modalYape.style.display = 'none';
+                    modalYape.classList.remove('closing');
+
+                    // Cerrar lightbox
+                    setTimeout(() => {
+                        fadeLightbox.classList.remove('fade-opening');
+                        fadeLightbox.classList.add('fade-closing');
+
+                        setTimeout(() => {
+                            fadeLightbox.classList.remove('fade-closing');
+                        }, 600);
+                    }, 200);
+                }, 400);
+            }, 300); // Tiempo más corto para el fade
         }
 
         btnLluviaSobres.addEventListener('click', abrirModalYape);
@@ -225,10 +333,7 @@
                 }
                 // Cerrar modal de bienvenida si está visible
                 else if (modal.style.display !== 'none' && !modal.classList.contains('closing')) {
-                    modal.classList.add('closing');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 500);
+                    cerrarModalBienvenida();
                 }
             }
         });
