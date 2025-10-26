@@ -652,7 +652,7 @@ button:active {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
-  animation: textExplosion 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, goldShimmer 3s ease-in-out 2s infinite;
+  animation: textExplosion 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info h1::after {
   content: "";
@@ -696,7 +696,6 @@ button:active {
   animation: materialize 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .fechacruz::before {
-  content: "";
   position: absolute;
   top: -3px;
   left: -5px;
@@ -1854,14 +1853,14 @@ button:active {
 @media (max-width: 768px) {
   /* Reducir transformaciones dramáticas en móviles */
   .saludo .terno.animate-in {
-    animation: dramaticEntranceMobile 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, glowPulse 2s ease-in-out 1.5s infinite;
+    animation: dramaticEntranceMobile 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   }
   .saludo .info {
     max-width: 90%;
     padding: 0 10px 30px;
   }
   .saludo .info h1.animate-in {
-    animation: textExplosionMobile 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, goldShimmer 3s ease-in-out 1.8s infinite;
+    animation: textExplosionMobile 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   }
   .saludo .info .r3 li.animate-in {
     animation: cardFlipMobile 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
