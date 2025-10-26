@@ -227,6 +227,9 @@ button:active {
 }
 
 /* fechacruz */
+.fechacruz {
+  margin-top: 10px;
+}
 .fechacruz .dia {
   font-size: 7.3px;
   color: #fff;
@@ -571,152 +574,270 @@ button:active {
   visibility: hidden;
 }
 
-/* ANIMACIONES PARA EL CONTENIDO PRINCIPAL */
+/* ANIMACIONES PARA EL CONTENIDO PRINCIPAL - ESTILO TIKTOK */
 #contenido {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+  position: relative;
+  /* Efecto de partículas de fondo estilo TikTok */
 }
 #contenido.contenido-visible {
   opacity: 1;
   visibility: visible;
 }
+#contenido::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(3px 3px at 15% 25%, rgba(255, 215, 0, 0.8), transparent), radial-gradient(2px 2px at 85% 15%, rgba(175, 148, 115, 0.9), transparent), radial-gradient(4px 4px at 25% 75%, rgba(255, 255, 255, 0.7), transparent), radial-gradient(2px 2px at 75% 85%, rgba(255, 215, 0, 0.6), transparent), radial-gradient(3px 3px at 45% 35%, rgba(175, 148, 115, 0.8), transparent);
+  background-size: 400px 400px, 300px 300px, 500px 500px, 350px 350px, 450px 450px;
+  animation: sparkleMovement 8s linear infinite, particleFadeIn 2s ease-out 1.5s both;
+  pointer-events: none;
+  z-index: -1;
+}
 
-/* SISTEMA DE ANIMACIONES SECUENCIALES */
+/* SISTEMA DE ANIMACIONES DRAMÁTICAS ESTILO TIKTOK */
 .saludo {
-  /* 1. IMAGEN DEL TERNO */
+  /* 1. IMAGEN DEL TERNO - Entrada dramática */
 }
 .saludo .terno {
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(100px) scale(0.3) rotate(15deg);
+  transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(10px) brightness(0.5);
 }
 .saludo .terno.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1) rotate(0deg);
+  filter: blur(0) brightness(1);
+  animation: dramaticEntrance 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, glowPulse 2s ease-in-out 1.8s infinite;
 }
 .saludo .info {
-  /* 2. TÍTULO PRINCIPAL */
-  /* 3. PÁRRAFOS DE TEXTO - Animación individual */
-  /* 4. FECHA Y CRUZ - Incluyendo el día */
-  /* 5. ÍCONOS INFORMATIVOS */
-  /* 6. ENLACES DE ACCIÓN */
-  /* 7. MENSAJE FINAL */
+  /* 2. TÍTULO PRINCIPAL - Explosión de texto */
+  /* 3. PÁRRAFOS - Efecto de volteo mejorado */
+  /* 4. FECHA Y CRUZ - Efecto de materialización */
+  /* 5. ÍCONOS INFORMATIVOS - Entrada con rebote */
+  /* 6. ENLACES - Efecto de zoom dramático */
+  /* 7. MENSAJE FINAL - Gran finalización */
 }
 .saludo .info h1 {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(50px) scale(0.5);
+  transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(8px);
+  position: relative;
+  /* Efecto de resplandor detrás del texto */
 }
 .saludo .info h1.animate-in {
   opacity: 1;
-  transform: translateY(0);
-  animation: titleGlow 1.5s ease-out 0.3s both;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  animation: textExplosion 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, goldShimmer 3s ease-in-out 2s infinite;
+}
+.saludo .info h1::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  animation: glowBurst 2s ease-out 0.5s both;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 .saludo .info p {
   opacity: 0;
-  transform: translateY(25px);
-  transition: all 0.7s ease;
+  transform: translateY(40px) rotateX(90deg);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: bottom center;
+  filter: blur(5px);
 }
 .saludo .info p.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotateX(0deg);
+  filter: blur(0);
+  animation: flipIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .saludo .info .fechacruz {
   opacity: 0;
-  transform: translateY(30px) scale(0.9);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  /* Animar el día por separado */
-  /* Animar los elementos de la fecha */
+  transform: translateY(60px) scale(0.7) rotateY(180deg);
+  transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(8px);
+  position: relative;
+  /* Efecto de luz pulsante alrededor de la fecha */
+  /* Animar elementos internos individualmente */
 }
 .saludo .info .fechacruz.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1) rotateY(0deg);
+  filter: blur(0);
+  animation: materialize 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+.saludo .info .fechacruz::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 2px solid rgba(175, 148, 115, 0.6);
+  border-radius: 15px;
+  animation: borderPulse 2s ease-in-out 1s infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 .saludo .info .fechacruz .dia {
   opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.6s ease;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .saludo .info .fechacruz .dia.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  animation: bounceInScale 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .fechacruz .g3 .item,
 .saludo .info .fechacruz .g3 .d2 {
   opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.6s ease;
+  transform: translateY(25px) rotateZ(45deg) scale(0.5);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .saludo .info .fechacruz .g3 .item.animate-in,
 .saludo .info .fechacruz .g3 .d2.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotateZ(0deg) scale(1);
+  animation: spinIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+.saludo .info .fechacruz .g3 .d2.animate-in {
+  animation: spinIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, numberGlow 2s ease-in-out 1.2s infinite;
 }
 .saludo .info .r3 {
   opacity: 0;
-  transform: translateY(35px);
-  transition: all 0.8s ease;
+  transform: translateY(80px) scale(0.3);
+  transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(5px);
 }
 .saludo .info .r3.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  animation: elasticEntry 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .r3 li {
   opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* Animar las imágenes y textos por separado */
+  transform: translateX(-80px) rotateY(90deg) scale(0.5);
+  transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  /* Efecto de brillo al activarse */
 }
 .saludo .info .r3 li.animate-in {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) rotateY(0deg) scale(1);
+  animation: cardFlip 1.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+.saludo .info .r3 li::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, transparent 30%, rgba(175, 148, 115, 0.4) 50%, transparent 70%);
+  border-radius: 15px;
+  opacity: 0;
+  animation: sweepShine 2s ease-in-out 0.5s infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 .saludo .info .r3 li img {
   opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.5s ease;
+  transform: scale(0.3) rotate(180deg);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .saludo .info .r3 li img.animate-in {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) rotate(0deg);
+  animation: iconSpin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .r3 li p {
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.5s ease;
+  transform: translateY(20px) scale(0.7);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .saludo .info .r3 li p.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  animation: textPop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .links {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
+  transform: translateY(60px) scale(0.5) rotateX(45deg);
+  transition: all 1.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(8px);
+  transform-origin: center bottom;
 }
 .saludo .info .links.animate-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1) rotateX(0deg);
+  filter: blur(0);
+  animation: dramaticZoom 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
 }
 .saludo .info .links li {
   opacity: 0;
-  transform: translateY(20px) scale(0.9);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(40px) scale(0.3) rotateZ(15deg);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  /* Efecto de partículas alrededor de los botones */
 }
 .saludo .info .links li.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1) rotateZ(0deg);
+  animation: buttonBurst 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+.saludo .info .links li::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background-image: radial-gradient(2px 2px at 20% 30%, rgba(175, 148, 115, 0.8), transparent), radial-gradient(1px 1px at 80% 20%, rgba(255, 215, 0, 0.9), transparent), radial-gradient(2px 2px at 30% 80%, rgba(255, 255, 255, 0.7), transparent);
+  animation: particleOrbit 3s linear infinite;
+  border-radius: 10px;
+  pointer-events: none;
 }
 .saludo .info .nofaltes {
   opacity: 0;
-  transform: translateY(25px) scale(0.95);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(50px) scale(0.5) rotateZ(10deg);
+  transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: blur(10px) brightness(0.5);
+  position: relative;
+  /* Efecto de explosión de luz detrás */
 }
 .saludo .info .nofaltes.animate-in {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: finalPulse 1.2s ease-out 0.2s both;
+  transform: translateY(0) scale(1) rotateZ(0deg);
+  filter: blur(0) brightness(1);
+  animation: grandFinale 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, finalGlow 3s ease-in-out 2s infinite;
+}
+.saludo .info .nofaltes::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  background: radial-gradient(circle, rgba(175, 148, 115, 0.4) 0%, transparent 70%);
+  animation: lightExplosion 2s ease-out 0.3s both;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* NUEVAS ANIMACIONES KEYFRAMES */
@@ -1206,4 +1327,494 @@ button:active {
   .qr-yape {
     max-width: 160px;
   }
+}
+/* ===================================== */
+/* ANIMACIONES ESTILO TIKTOK DRAMÁTICAS */
+/* ===================================== */
+/* Movimiento de partículas de fondo */
+@keyframes sparkleMovement {
+  0% {
+    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%, 50% 50%;
+  }
+  25% {
+    background-position: 100% 0%, 0% 100%, 50% 0%, 50% 100%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%, 100% 50%, 0% 50%, 100% 0%;
+  }
+  75% {
+    background-position: 0% 100%, 100% 0%, 50% 100%, 50% 0%, 50% 100%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%, 50% 50%;
+  }
+}
+@keyframes particleFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Entrada dramática de la imagen */
+@keyframes dramaticEntrance {
+  0% {
+    transform: translateY(150px) scale(0.2) rotate(45deg);
+    opacity: 0;
+    filter: blur(20px) brightness(0.3);
+  }
+  30% {
+    transform: translateY(-30px) scale(1.2) rotate(-15deg);
+    opacity: 0.7;
+    filter: blur(5px) brightness(0.8);
+  }
+  60% {
+    transform: translateY(10px) scale(0.95) rotate(5deg);
+    opacity: 0.9;
+    filter: blur(2px) brightness(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0) brightness(1);
+  }
+}
+/* Pulso de brillo continuo */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(175, 148, 115, 0.3));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 30px rgba(175, 148, 115, 0.8));
+  }
+}
+/* Explosión de texto */
+@keyframes textExplosion {
+  0% {
+    transform: scale(0.1) rotate(180deg);
+    opacity: 0;
+    filter: blur(20px);
+  }
+  20% {
+    transform: scale(1.8) rotate(-20deg);
+    opacity: 0.3;
+    filter: blur(10px);
+  }
+  40% {
+    transform: scale(0.8) rotate(10deg);
+    opacity: 0.7;
+    filter: blur(3px);
+  }
+  60% {
+    transform: scale(1.1) rotate(-5deg);
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/* Brillo dorado continuo */
+@keyframes goldShimmer {
+  0%, 100% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  25% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(175, 148, 115, 0.4);
+  }
+  50% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.9), 0 0 50px rgba(175, 148, 115, 0.6);
+  }
+  75% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 35px rgba(255, 215, 0, 0.7), 0 0 45px rgba(175, 148, 115, 0.5);
+  }
+}
+/* Explosión de resplandor */
+@keyframes glowBurst {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+/* Efecto de volteo para párrafos */
+@keyframes flipIn {
+  0% {
+    transform: rotateX(90deg) translateY(50px);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateX(-10deg) translateY(-10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotateX(0deg) translateY(0);
+    opacity: 1;
+  }
+}
+/* Materialización de fecha */
+@keyframes materialize {
+  0% {
+    transform: translateY(80px) scale(0.3) rotateY(180deg);
+    opacity: 0;
+    filter: blur(15px);
+  }
+  30% {
+    transform: translateY(-20px) scale(1.3) rotateY(-30deg);
+    opacity: 0.5;
+    filter: blur(8px);
+  }
+  60% {
+    transform: translateY(5px) scale(0.9) rotateY(15deg);
+    opacity: 0.8;
+    filter: blur(3px);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateY(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/* Pulso de borde */
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(175, 148, 115, 0.3);
+    box-shadow: 0 0 10px rgba(175, 148, 115, 0.2);
+  }
+  50% {
+    border-color: rgba(175, 148, 115, 0.8);
+    box-shadow: 0 0 30px rgba(175, 148, 115, 0.6);
+  }
+}
+/* Entrada con rebote y escala */
+@keyframes bounceInScale {
+  0% {
+    transform: scale(0.3) translateY(30px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.9) translateY(5px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+/* Giro con entrada */
+@keyframes spinIn {
+  0% {
+    transform: rotateZ(180deg) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateZ(-20deg) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+}
+/* Brillo del número principal */
+@keyframes numberGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(175, 148, 115, 0.5);
+    color: #c19b33;
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(175, 148, 115, 0.6);
+    color: #FFD700;
+  }
+}
+/* Entrada elástica */
+@keyframes elasticEntry {
+  0% {
+    transform: scale(0.1) translateY(100px);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.3) translateY(-30px);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(0.8) translateY(15px);
+    opacity: 0.8;
+  }
+  80% {
+    transform: scale(1.1) translateY(-5px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+/* Volteo de tarjeta */
+@keyframes cardFlip {
+  0% {
+    transform: rotateY(90deg) translateX(-100px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(-15deg) translateX(20px) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotateY(0deg) translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+/* Brillo deslizante */
+@keyframes sweepShine {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+/* Giro de ícono */
+@keyframes iconSpin {
+  0% {
+    transform: rotateZ(360deg) scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateZ(180deg) scale(1.3);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+}
+/* Pop de texto */
+@keyframes textPop {
+  0% {
+    transform: scale(0.3) translateY(30px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+/* Zoom dramático */
+@keyframes dramaticZoom {
+  0% {
+    transform: scale(0.1) rotateX(90deg) translateY(100px);
+    opacity: 0;
+    filter: blur(20px);
+  }
+  30% {
+    transform: scale(1.5) rotateX(-20deg) translateY(-50px);
+    opacity: 0.4;
+    filter: blur(10px);
+  }
+  60% {
+    transform: scale(0.8) rotateX(10deg) translateY(20px);
+    opacity: 0.7;
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(1) rotateX(0deg) translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/* Explosión de botón */
+@keyframes buttonBurst {
+  0% {
+    transform: scale(0.1) rotateZ(180deg);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.4) rotateZ(-30deg);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(0.9) rotateZ(15deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+  }
+}
+/* Órbita de partículas */
+@keyframes particleOrbit {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.6;
+  }
+}
+/* Gran final */
+@keyframes grandFinale {
+  0% {
+    transform: scale(0.1) translateY(100px) rotateZ(45deg);
+    opacity: 0;
+    filter: blur(20px) brightness(0.3);
+  }
+  20% {
+    transform: scale(2) translateY(-80px) rotateZ(-45deg);
+    opacity: 0.3;
+    filter: blur(15px) brightness(0.6);
+  }
+  40% {
+    transform: scale(0.5) translateY(40px) rotateZ(15deg);
+    opacity: 0.6;
+    filter: blur(8px) brightness(0.9);
+  }
+  60% {
+    transform: scale(1.3) translateY(-20px) rotateZ(-10deg);
+    opacity: 0.8;
+    filter: blur(3px) brightness(1.2);
+  }
+  80% {
+    transform: scale(0.9) translateY(10px) rotateZ(5deg);
+    opacity: 0.9;
+    filter: blur(1px) brightness(1.1);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0) brightness(1);
+  }
+}
+/* Brillo final continuo */
+@keyframes finalGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(175, 148, 115, 0.6);
+    filter: brightness(1);
+  }
+  33% {
+    text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(175, 148, 115, 0.4);
+    filter: brightness(1.3);
+  }
+  66% {
+    text-shadow: 0 0 35px rgba(175, 148, 115, 0.9), 0 0 55px rgba(255, 215, 0, 0.5);
+    filter: brightness(1.2);
+  }
+}
+/* Explosión de luz */
+@keyframes lightExplosion {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0.2;
+  }
+}
+/* Efectos hover mejorados estilo TikTok */
+.contenido-visible .r3 li {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: auto;
+  /* Asegurar que sean clickeables */
+}
+.contenido-visible .r3 li:hover {
+  transform: translateY(-15px) scale(1.1) rotateZ(5deg);
+  filter: brightness(1.3) drop-shadow(0 10px 25px rgba(175, 148, 115, 0.6));
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 20;
+}
+.contenido-visible .r3 li:hover::before {
+  opacity: 1;
+  animation: sweepShine 1s ease-in-out infinite;
+}
+.contenido-visible .r3 li img, .contenido-visible .r3 li p {
+  position: relative;
+  z-index: 11;
+  pointer-events: auto;
+}
+.contenido-visible .links li {
+  position: relative;
+  z-index: 10;
+}
+.contenido-visible .links li a {
+  position: relative;
+  z-index: 11;
+  display: block;
+  pointer-events: auto;
+}
+.contenido-visible .links li a:hover {
+  transform: translateY(-10px) scale(1.05) rotateZ(-2deg);
+  background: linear-gradient(135deg, #FFD700 0%, #af9473 50%, #FFD700 100%);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 20;
+}
+.contenido-visible .nofaltes {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+.contenido-visible .nofaltes:hover {
+  transform: scale(1.1) rotateZ(2deg);
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 50px rgba(175, 148, 115, 0.6);
+  filter: brightness(1.4);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 20;
+}
+
+/* Asegurar interactividad específica para elementos clickeables */
+#lluvia-sobres-btn {
+  position: relative;
+  z-index: 15;
+  cursor: pointer;
+  pointer-events: auto;
+}
+#lluvia-sobres-btn * {
+  pointer-events: auto;
+}
+#lluvia-sobres-btn:hover {
+  z-index: 25;
+}
+
+.links a {
+  position: relative;
+  z-index: 15;
+  pointer-events: auto;
+}
+.links a:hover {
+  z-index: 25;
 }/*# sourceMappingURL=style.css.map */
