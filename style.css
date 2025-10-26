@@ -1,13 +1,20 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Rozha+One&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
 @font-face {
-  font-family: titulo;
-  src: url(fuentes/Eyesome\ Script.woff2) format("woff2"), url(fuentes/Eyesome\ Script.woff) format("woff");
+  font-family: "titulo";
+  src: url("fuentes/Eyesome Script.woff2") format("woff2"), url("fuentes/Eyesome Script.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: parrafo;
-  src: url(fuentes/parrafo.woff);
+  font-family: "parrafo";
+  src: url("fuentes/parrafo.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 * {
   margin: 0;
@@ -20,6 +27,7 @@ body {
   background: #000000;
 }
 
+/* Player */
 .player {
   display: flex;
   align-items: center;
@@ -32,6 +40,7 @@ body {
   z-index: 9999;
   bottom: 20px;
   right: 20px;
+  /* Si quieres ocultarlo por defecto deja display:none; si no, quítalo */
   display: none;
 }
 
@@ -103,7 +112,7 @@ button:active {
   }
 }
 .saludo {
-  background: url(fondo.png);
+  background: url("fondo.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 100%;
@@ -121,7 +130,7 @@ button:active {
   gap: 3px;
 }
 .saludo h1 {
-  font-family: titulo, cursive;
+  font-family: "titulo", cursive;
   font-weight: bold;
   font-size: clamp(2.6rem, 8vw, 12rem);
   position: relative;
@@ -134,7 +143,7 @@ button:active {
   color: white;
   font-size: 6px;
   line-height: 1.5;
-  font-family: parrafo;
+  font-family: "parrafo";
 }
 .saludo h3 {
   font-family: "Montecarlo", cursive;
@@ -217,10 +226,11 @@ button:active {
   }
 }
 
+/* fechacruz */
 .fechacruz .dia {
   font-size: 7.3px;
   color: #fff;
-  font-family: parrafo;
+  font-family: "parrafo";
 }
 .fechacruz .g3 {
   display: grid;
@@ -237,7 +247,7 @@ button:active {
 .fechacruz .g3 .item {
   font-size: 9.6px;
   color: #fff;
-  font-family: parrafo;
+  font-family: "parrafo";
   border-top: 1px solid #c19b33;
   border-bottom: 1px solid #c19b33;
   line-height: 1;
@@ -246,6 +256,7 @@ button:active {
   padding-bottom: 1px;
 }
 
+/* modal */
 .modal {
   position: fixed;
   z-index: 99999;
@@ -258,25 +269,256 @@ button:active {
   justify-content: center;
   flex-direction: column;
   color: white;
-  background: url(fondog.jpg);
+  background: url("fondog.jpg");
   background-size: cover;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+}
+.modal.closing {
+  opacity: 0;
+  transform: scale(0.95);
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(175, 148, 115, 0.3), rgba(0, 0, 0, 0.9), rgba(175, 148, 115, 0.2));
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease-in-out infinite;
+  z-index: 1;
+}
+.modal::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(175, 148, 115, 0.8), transparent), radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent), radial-gradient(1px 1px at 90px 40px, rgba(175, 148, 115, 0.9), transparent), radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(2px 2px at 160px 30px, rgba(175, 148, 115, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle 6s linear infinite;
+  z-index: 2;
+  opacity: 0.7;
 }
 .modal .lineas {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   width: 90%;
-  z-index: -1;
+  z-index: 3;
+  animation: pulseGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(175, 148, 115, 0.6));
 }
 .modal .nombre {
   width: 80%;
+  z-index: 4;
+  position: relative;
+  animation: floatIn 2s ease-out;
+  filter: drop-shadow(0 0 30px rgba(175, 148, 115, 0.8));
+}
+.modal .nombre::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, transparent, rgba(175, 148, 115, 0.4), transparent);
+  animation: shine 3s ease-in-out infinite;
+  border-radius: 20px;
+  z-index: -1;
 }
 .modal .carta {
-  max-width: 100px;
+  max-width: 100%;
+  z-index: 5;
+  position: relative;
+  animation: bounceIn 1.5s ease-out 0.5s both;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+}
+.modal .carta:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 20px rgba(175, 148, 115, 0.8));
+}
+.modal .carta:active {
+  transform: scale(0.95) rotate(-2deg);
+}
+.modal button {
+  position: relative;
+  z-index: 6;
+  background: linear-gradient(135deg, #af9473 0%, rgb(212.0909090909, 197.6090909091, 179.9090909091) 50%, #af9473 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(175, 148, 115, 0.3), 0 0 0 8px rgba(175, 148, 115, 0.1), 0 15px 35px rgba(0, 0, 0, 0.5);
+  animation: buttonPulse 2s ease-in-out infinite;
+}
+.modal button::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 3px solid transparent;
+  border-top: 3px solid rgba(175, 148, 115, 0.8);
+  border-right: 3px solid rgba(175, 148, 115, 0.4);
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+.modal button::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background-image: radial-gradient(1px 1px at 10px 10px, rgba(175, 148, 115, 0.8), transparent), radial-gradient(1px 1px at 30px 20px, rgba(255, 255, 255, 0.6), transparent), radial-gradient(1px 1px at 50px 30px, rgba(175, 148, 115, 0.9), transparent);
+  animation: particleFloat 3s ease-in-out infinite;
+  border-radius: 50%;
+}
+.modal button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 6px rgba(175, 148, 115, 0.4), 0 0 0 12px rgba(175, 148, 115, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+  animation: buttonHover 0.6s ease-out infinite alternate;
 }
 
+/* ANIMACIONES ESTILO TIKTOK */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes sparkle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-10px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-5px) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-15px) rotate(270deg);
+    opacity: 0.9;
+  }
+}
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(175, 148, 115, 0.6));
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(175, 148, 115, 0.9));
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes shine {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-180deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(-90deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(175, 148, 115, 0.3), 0 0 0 8px rgba(175, 148, 115, 0.1), 0 15px 35px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(175, 148, 115, 0.5), 0 0 0 12px rgba(175, 148, 115, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes particleFloat {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    opacity: 1;
+    transform: scale(1.2) rotate(120deg);
+  }
+  66% {
+    opacity: 0.8;
+    transform: scale(0.8) rotate(240deg);
+  }
+}
+@keyframes buttonHover {
+  0% {
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  100% {
+    filter: brightness(1.2) hue-rotate(10deg);
+  }
+}
+/* EFECTOS ADICIONALES PARA MÓVIL */
+@media (max-width: 768px) {
+  .modal .nombre {
+    width: 85%;
+  }
+  .modal .carta {
+    max-width: 100%;
+  }
+  .modal button {
+    width: 200px;
+    height: 200px;
+  }
+}
+/* MODAL DE YAPE */
 .modal-yape {
   position: fixed;
   z-index: 99998;
@@ -285,14 +527,26 @@ button:active {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: scale(0.9);
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 .modal-yape.show {
-  animation: fadeIn 0.3s ease-out;
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+.modal-yape.closing {
+  opacity: 0;
+  transform: scale(0.95);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .modal-yape-content {
@@ -304,6 +558,8 @@ button:active {
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px #af9473, inset 0 1px 0 rgba(175, 148, 115, 0.2);
   position: relative;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .modal-yape-content::before {
   content: "";
@@ -315,6 +571,12 @@ button:active {
   border-radius: 20px;
   background: linear-gradient(45deg, transparent 30%, rgba(175, 148, 115, 0.1) 50%, transparent 70%);
   pointer-events: none;
+}
+.modal-yape.show .modal-yape-content {
+  transform: translateY(0) scale(1);
+}
+.modal-yape.closing .modal-yape-content {
+  transform: translateY(20px) scale(0.95);
 }
 
 .modal-yape-header {
@@ -469,6 +731,7 @@ button:active {
   z-index: 1;
 }
 
+/* ANIMACIONES PARA EL MODAL */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -479,6 +742,31 @@ button:active {
     transform: scale(1);
   }
 }
+@keyframes modalInkOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes modalInkClose {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(15px);
+  }
+}
+/* EFECTOS HOVER PARA EL BOTÓN */
 #lluvia-sobres-btn {
   transition: all 0.3s ease;
   border-radius: 10px;
@@ -499,6 +787,7 @@ button:active {
   transform: translateY(-1px) scale(1.02);
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .modal-yape-content {
     width: 95%;

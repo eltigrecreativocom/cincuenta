@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Modal popup - ink transition effect - WIP</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <main>
+
+<div class=bg-paper></div>
+
+<h1>Modal popup - ink transition effect</h1>
+
+<p>Deconstruction and rebuild of
+  <a class=lnk title="[new window]" target=_blank href="https://codyhouse.co/gem/ink-transition-effect/">https://codyhouse.co/gem/ink-transition-effect/</a> optimised for use in production.</p>
+
+<p>Status (03-02-2018): Requires updating to use HTML 5.2. <code>dialog</code></p>
+
+<button class=btn-question aria-controls=modal1>
+  <span class=visually-hidden>Open</span>
+  <svg class=svg-question><use xlink:href="#icon-question"></use></svg>
+</button>
+
+<button class=btn-question aria-controls=modal2>
+  <span class=visually-hidden>Open</span>
+  <svg class=svg-question><use xlink:href="#icon-question"></use></svg>
+</button>
+
+
+<div id=modal1 class=modal aria-labelledby=modal-title1>
+  <div class=modal_content>
+    <div class=modal_scroll>
+      <h2 id=modal-title1>Features:</h2>
+      <ul>
+        <li>Prevented body scroll while popup active</li>
+        <li>Optimised images</li>
+        <li>Click outside modal to close</li>
+        <li>No jQuery, pure vanilla JavaScript</li>
+        <li>CSS notation in simplified BEM</li>
+        <li>Multiple modals &amp; buttons</li>
+      </ul>
+    </div>
+    <button class=btn-close data-modal_close aria-label="Close dialog">
+      <svg class=svg-close><use xlink:href="#icon-close"></use></svg>
+    </button>
+  </div>
+</div>
+
+
+<div id=modal2 class=modal aria-labelledby=modal-title2>
+  <div class=modal_content>
+    <div class=modal_scroll>
+      <h2 id=modal-title2>To do list:</h2>
+      <ul>
+        <li>Requires updating to use HTML 5.2.</li>
+        <li>Accessibility: ARIA and keyboard control.</li>
+        <li>Disable asset load on mobile.</li>
+        <li>Cross-browser, cross device testing.</li>
+        <li>Unify JS into single module.</li>
+        <li>Spread ink from activation point.</li>
+        <li>Perhaps limit ink spread to modal, plus a bit. Not the whole viewport.</li>
+        <li>Alternate ink image: cloud, water, smoke.</li>
+        <li>Replace sprite png with video?</li>
+      </ul>
+      <h3>Content to force popup to scroll</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla.</p>
+    </div>
+  <button class=btn-close data-modal_close aria-label="Close dialog">
+    <svg class=svg-close><use xlink:href="#icon-close"></use></svg>
+  </button>
+  </div>
+</div>
+
+
+
+
+<svg class=visually-hidden>
+  <def>
+    
+    <symbol viewBox="0 0 48 48" id="icon-question">
+      <path d="M21.76 36.12c-2 .7-2.76 2.7-1.52 4.1.1.1.74.63.9.72 1.35.77 3.5.58 4.62-.58 2.2-2.22-.77-5.35-4-4.24zm3.56-18.08c-.5.85-1.47 1.7-3.7 2.05-4.82.7-6.62-.8-8.2-2.6-1.42-1.7-.88-4.5.1-6.3.7-1.4 2.1-2.7 3.4-3.4 1-.6 2.2-.8 2.78-.9 2.1-.5 3.8-.4 6-.2 2.6.2 5.6 1.4 7.45 3.3 1.43 1.5 2.5 3.1 2.26 5.2-.7 6.4-3.6 7.5-6.5 10-5.6 4.8-2.9 9.2-2.9 9.2l-5.5-1.77s-.1-1.44-.02-2.1c.26-2.36 2.26-3.96 3.8-5.56 1-1 2.8-2.8 3.75-4 3.14-3.83 3.1-6.65-.4-10.26-1.52-1.6-3.2-2.04-5.33-2.04-.7 0-1.94 0-2.74.2-.48.12-1.86.76-2.08.92-1.64 1.2-3.34 3.7-2.2 6.3.9 2.07 3.76 2.38 5.7 1.87-2.15-1.66-1.53-4.64 1.1-5.22.6-.2 1.4-.2 2 0 1.28.52 1.84 1.36 1.84 3.07 0 .77-.2 1.5-.6 2.03z"/>
+    </symbol>
+    
+    <symbol viewBox="0 0 48 48" id="icon-close">
+      <path d="M24 21.3l6.3-6.2 2.7 3-6.3 6 6.3 6.6-2.7 2.7L24 27l-6 6-3-2.6 6.5-6.3-6.3-6 3-3 6.2 6.6z"/>
+    </symbol>
+
+  </def>
+</svg>
+
+
+
+<p class=ftr><a class=ftr_lnk target=_blank title="[new window]" href="https://codepen.io/2kool2/pens/public/?grid_type=list#">Pens by Mike Foskett</a> &mdash; <a class=ftr_lnk target=_blank title="[new window]" href="https://websemantics.uk/">webSemantics</a></p>
+
+<h2>Content to force page scroll</h2>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+							</p>
+
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit quod, molestiae voluptates commodi debitis saepe hic, aut magnam accusantium nostrum error ratione eum vero accusamus autem modi labore doloremque explicabo ut perspiciatis nulla molestias sequi eligendi tempore libero. Dolore iste vitae illum sequi neque quas, dolorem dolor officiis voluptatum quae voluptatibus tenetur molestias soluta blanditiis amet debitis incidunt eaque ratione facere repudiandae cupiditate aspernatur, velit ea itaque. Optio aut harum ad modi dolore doloribus tenetur laboriosam aspernatur minima itaque velit quia, illo sapiente unde, eum autem expedita facilis aliquam, dolorum dicta fuga totam sed pariatur iste! Inventore laudantium qui nostrum, perspiciatis quod! Molestias asperiores facilis explicabo necessitatibus dicta perferendis, esse, quisquam autem corporis ab doloremque nisi voluptas quidem, modi sequi aperiam, illum reiciendis delectus nostrum architecto eligendi sint deleniti voluptate! Magni quia harum eligendi laudantium fuga aspernatur veniam sunt impedit, vitae sit praesentium quam porro dolorem in eveniet iusto. Dicta tempora quo itaque minima expedita accusamus ex perferendis repellat totam! Fugit rerum nihil distinctio ducimus delectus, accusamus enim eos eum nulla fugiat aliquam blanditiis minus omnis maiores, quia numquam placeat. Molestias cupiditate deleniti porro praesentium, aliquam blanditiis maxime iste necessitatibus provident optio ipsum, beatae, libero nostrum, maiores! Temporibus, reiciendis, quibusdam.
+							</p>
+
+</main>
+
+
+<div class=lightbox data-modal_lightbox>
+  <div id=modal_bg class=lightbox_bg></div>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

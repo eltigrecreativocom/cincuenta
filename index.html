@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
     <!-- Modal de bienvenida -->
     <div id="modal-invitacion" class="modal">
         <img src="lineas.svg" class="lineas" alt="">
@@ -150,7 +151,26 @@
         const btnVer = document.getElementById('btn-ver-invitacion');
 
         btnVer.addEventListener('click', function () {
-            modal.style.display = 'none';
+            // Añadir clase de cierre para transición suave
+            modal.classList.add('closing');
+
+            // Después de la transición, ocultar completamente
+            setTimeout(() => {
+                modal.style.display = 'none';
+                // Mostrar el reproductor de música con transición suave
+                const player = document.querySelector('.player');
+                if (player) {
+                    player.style.display = 'flex';
+                    player.style.opacity = '0';
+                    player.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        player.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        player.style.opacity = '1';
+                        player.style.transform = 'scale(1)';
+                    }, 100);
+                }
+            }, 500); // Duración de la transición CSS
+
             // Iniciar música automáticamente
             audio.play().then(() => {
                 btn.innerHTML = pauseSVG;
@@ -165,18 +185,51 @@
         const btnLluviaSobres = document.getElementById('lluvia-sobres-btn');
         const btnCerrarYape = document.getElementById('cerrar-modal-yape');
 
-        btnLluviaSobres.addEventListener('click', function () {
+        // Función para abrir modal Yape
+        function abrirModalYape() {
             modalYape.style.display = 'flex';
-        });
+            // Pequeño delay para asegurar que el display: flex se aplique antes de la animación
+            setTimeout(() => {
+                modalYape.classList.add('show');
+            }, 10);
+        }
 
-        btnCerrarYape.addEventListener('click', function () {
-            modalYape.style.display = 'none';
-        });
+        // Función para cerrar modal Yape
+        function cerrarModalYape() {
+            modalYape.classList.remove('show');
+            modalYape.classList.add('closing');
+
+            // Después de la transición, ocultar completamente
+            setTimeout(() => {
+                modalYape.style.display = 'none';
+                modalYape.classList.remove('closing');
+            }, 400); // Duración de la transición CSS
+        }
+
+        btnLluviaSobres.addEventListener('click', abrirModalYape);
+        btnCerrarYape.addEventListener('click', cerrarModalYape);
 
         // Cerrar modal al hacer clic fuera del contenido
         modalYape.addEventListener('click', function (e) {
             if (e.target === modalYape) {
-                modalYape.style.display = 'none';
+                cerrarModalYape();
+            }
+        });
+
+        // Cerrar modales con tecla Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                // Cerrar modal de Yape si está abierto
+                if (modalYape.classList.contains('show')) {
+                    cerrarModalYape();
+                }
+                // Cerrar modal de bienvenida si está visible
+                else if (modal.style.display !== 'none' && !modal.classList.contains('closing')) {
+                    modal.classList.add('closing');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 500);
+                }
             }
         });
     </script>
