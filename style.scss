@@ -749,28 +749,22 @@ button:active {
     }
 }
 
-/* SISTEMA DE ANIMACIONES DRAMÁTICAS ESTILO TIKTOK */
+/* SISTEMA DE ANIMACIONES SIMPLIFICADAS - Solo nombre animado */
 .saludo {
 
-    /* 1. IMAGEN DEL TERNO - Entrada dramática */
+    /* 1. IMAGEN DEL TERNO - Sin animación dramática, solo fade simple */
     .terno {
         opacity: 0;
-        transform: translateY(100px) scale(0.3) rotate(15deg);
-        transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        filter: blur(10px) brightness(0.5);
+        transition: opacity 0.8s ease;
 
         &.animate-in {
             opacity: 1;
-            transform: translateY(0) scale(1) rotate(0deg);
-            filter: blur(0) brightness(1);
-            animation: dramaticEntrance 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both,
-                glowPulse 2s ease-in-out 1.8s infinite;
         }
     }
 
     .info {
 
-        /* 2. TÍTULO PRINCIPAL - Explosión de texto */
+        /* 2. TÍTULO PRINCIPAL - Mantener explosión de texto */
         h1 {
             opacity: 0;
             transform: translateY(50px) scale(0.5);
@@ -799,61 +793,32 @@ button:active {
             }
         }
 
-        /* 3. PÁRRAFOS - Efecto de volteo mejorado */
+        /* 3. PÁRRAFOS - Fade simple */
         p {
             opacity: 0;
-            transform: translateY(40px) rotateX(90deg);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-origin: bottom center;
-            filter: blur(5px);
+            transition: opacity 0.8s ease;
 
             &.animate-in {
                 opacity: 1;
-                transform: translateY(0) rotateX(0deg);
-                filter: blur(0);
-                animation: flipIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
             }
         }
 
-        /* 4. FECHA Y CRUZ - Efecto de materialización */
+        /* 4. FECHA Y CRUZ - Fade simple */
         .fechacruz {
             opacity: 0;
-            transform: translateY(60px) scale(0.7) rotateY(180deg);
-            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: blur(8px);
-            position: relative;
+            transition: opacity 0.8s ease;
 
             &.animate-in {
                 opacity: 1;
-                transform: translateY(0) scale(1) rotateY(0deg);
-                filter: blur(0);
-                animation: materialize 1.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
             }
 
-            /* Efecto de luz pulsante alrededor de la fecha */
-            &::before {
-                position: absolute;
-                top: -3px;
-                left: -5px;
-                right: -5px;
-                bottom: -15px;
-                border: 2px solid rgba(175, 148, 115, 0.6);
-                border-radius: 15px;
-                animation: borderPulse 2s ease-in-out 1s infinite;
-                z-index: -1;
-                pointer-events: none;
-            }
-
-            /* Animar elementos internos individualmente */
+            /* Animar elementos internos individualmente - simplificado */
             .dia {
                 opacity: 0;
-                transform: translateY(20px) scale(0.8);
-                transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                transition: opacity 0.6s ease;
 
                 &.animate-in {
                     opacity: 1;
-                    transform: translateY(0) scale(1);
-                    animation: bounceInScale 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
                 }
             }
 
@@ -862,166 +827,78 @@ button:active {
                 .item,
                 .d2 {
                     opacity: 0;
-                    transform: translateY(25px) rotateZ(45deg) scale(0.5);
-                    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    transition: opacity 0.6s ease;
 
                     &.animate-in {
                         opacity: 1;
-                        transform: translateY(0) rotateZ(0deg) scale(1);
-                        animation: spinIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
-                    }
-                }
-
-                .d2 {
-                    &.animate-in {
-                        animation: spinIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both,
-                            numberGlow 2s ease-in-out 1.2s infinite;
                     }
                 }
             }
         }
 
-        /* 5. ÍCONOS INFORMATIVOS - Entrada con rebote */
+        /* 5. ÍCONOS INFORMATIVOS - Fade simple */
         .r3 {
             opacity: 0;
-            transform: translateY(80px) scale(0.3);
-            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: blur(5px);
+            transition: opacity 0.8s ease;
 
             &.animate-in {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-                animation: elasticEntry 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
             }
 
             li {
                 opacity: 0;
-                transform: translateX(-40px) rotateY(45deg) scale(0.7);
-                transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                position: relative;
+                transition: opacity 0.6s ease;
 
                 &.animate-in {
                     opacity: 1;
-                    transform: translateX(0) rotateY(0deg) scale(1);
-                    animation: cardFlip 1.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
-                }
-
-                /* Efecto de brillo al activarse */
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: -5px;
-                    left: -5px;
-                    right: -5px;
-                    bottom: -5px;
-                    background: linear-gradient(45deg, transparent 30%, rgba(175, 148, 115, 0.4) 50%, transparent 70%);
-                    border-radius: 15px;
-                    opacity: 0;
-                    z-index: -1;
-                    pointer-events: none;
                 }
 
                 img {
                     opacity: 0;
-                    transform: scale(0.3) rotate(180deg);
-                    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    transition: opacity 0.6s ease;
 
                     &.animate-in {
                         opacity: 1;
-                        transform: scale(1) rotate(0deg);
-                        animation: iconSpin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
                     }
                 }
 
                 p {
                     opacity: 0;
-                    transform: translateY(20px) scale(0.7);
-                    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    transition: opacity 0.6s ease;
 
                     &.animate-in {
                         opacity: 1;
-                        transform: translateY(0) scale(1);
-                        animation: textPop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
                     }
                 }
             }
         }
 
-        /* 6. ENLACES - Efecto de zoom dramático */
+        /* 6. ENLACES - Fade simple */
         .links {
             opacity: 0;
-            transform: translateY(60px) scale(0.5) rotateX(45deg);
-            transition: all 1.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: blur(8px);
-            transform-origin: center bottom;
+            transition: opacity 0.8s ease;
 
             &.animate-in {
                 opacity: 1;
-                transform: translateY(0) scale(1) rotateX(0deg);
-                filter: blur(0);
-                animation: dramaticZoom 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
             }
 
             li {
                 opacity: 0;
-                transform: translateY(40px) scale(0.3) rotateZ(15deg);
-                transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                position: relative;
+                transition: opacity 0.6s ease;
 
                 &.animate-in {
                     opacity: 1;
-                    transform: translateY(0) scale(1) rotateZ(0deg);
-                    animation: buttonBurst 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
-                }
-
-                /* Efecto de partículas alrededor de los botones */
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: -10px;
-                    left: -10px;
-                    right: -10px;
-                    bottom: -10px;
-                    background-image:
-                        radial-gradient(2px 2px at 20% 30%, rgba(175, 148, 115, 0.8), transparent),
-                        radial-gradient(1px 1px at 80% 20%, rgba(255, 215, 0, 0.9), transparent),
-                        radial-gradient(2px 2px at 30% 80%, rgba(255, 255, 255, 0.7), transparent);
-                    animation: particleOrbit 3s linear infinite;
-                    border-radius: 10px;
-                    pointer-events: none;
                 }
             }
         }
 
-        /* 7. MENSAJE FINAL - Gran finalización */
+        /* 7. MENSAJE FINAL - Fade simple */
         .nofaltes {
             opacity: 0;
-            transform: translateY(50px) scale(0.5) rotateZ(10deg);
-            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: blur(10px) brightness(0.5);
-            position: relative;
+            transition: opacity 0.8s ease;
 
             &.animate-in {
                 opacity: 1;
-                transform: translateY(0) scale(1) rotateZ(0deg);
-                filter: blur(0) brightness(1);
-                animation: grandFinale 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both,
-                    finalGlow 3s ease-in-out 2s infinite;
-            }
-
-            /* Efecto de explosión de luz detrás */
-            &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 200px;
-                height: 200px;
-                margin: -100px 0 0 -100px;
-                animation: lightExplosion 2s ease-out 0.3s both;
-                z-index: -1;
-                pointer-events: none;
             }
         }
     }
@@ -1139,7 +1016,7 @@ button:active {
     }
 }
 
-/* PARTÍCULAS FLOTANTES PARA EL FONDO */
+/* PARTÍCULAS FLOTANTES PARA EL FONDO - Destellos sutiles */
 .saludo::after {
     content: '';
     position: absolute;
@@ -1149,14 +1026,64 @@ button:active {
     height: 100%;
     pointer-events: none;
     background-image:
-        radial-gradient(2px 2px at 10% 20%, rgba(175, 148, 115, 0.3), transparent),
-        radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.2), transparent),
-        radial-gradient(2px 2px at 70% 30%, rgba(175, 148, 115, 0.4), transparent),
-        radial-gradient(1px 1px at 90% 70%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(2px 2px at 50% 50%, rgba(175, 148, 115, 0.2), transparent);
-    background-size: 300px 300px, 400px 400px, 350px 350px, 250px 250px, 500px 500px;
+        radial-gradient(2px 2px at 10% 20%, rgba(175, 148, 115, 0.4), transparent),
+        radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(2px 2px at 70% 30%, rgba(175, 148, 115, 0.5), transparent),
+        radial-gradient(1px 1px at 90% 70%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 50% 50%, rgba(175, 148, 115, 0.3), transparent),
+        radial-gradient(1px 1px at 20% 60%, rgba(255, 215, 0, 0.3), transparent),
+        radial-gradient(3px 3px at 80% 40%, rgba(175, 148, 115, 0.2), transparent),
+        radial-gradient(1px 1px at 60% 15%, rgba(255, 255, 255, 0.5), transparent);
+    background-size: 300px 300px, 400px 400px, 350px 350px, 250px 250px, 500px 500px, 200px 200px, 450px 450px, 180px 180px;
     opacity: 0;
-    animation: floatingParticles 20s linear infinite, fadeInParticles 3s ease-in-out 2s both;
+    animation: floatingParticles 15s linear infinite, fadeInParticles 2s ease-in-out 1s both;
+}
+
+/* Agregar destellos adicionales más sutiles */
+.saludo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1px 1px at 25% 45%, rgba(255, 215, 0, 0.6), transparent),
+        radial-gradient(2px 2px at 75% 25%, rgba(175, 148, 115, 0.4), transparent),
+        radial-gradient(1px 1px at 45% 75%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(2px 2px at 15% 85%, rgba(175, 148, 115, 0.3), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(255, 215, 0, 0.4), transparent);
+    background-size: 280px 280px, 320px 320px, 240px 240px, 360px 360px, 200px 200px;
+    opacity: 0;
+    animation: sparklingTwinkle 12s linear infinite, fadeInParticles 2.5s ease-in-out 1.5s both;
+}
+
+@keyframes sparklingTwinkle {
+    0% {
+        background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%, 50% 50%;
+        opacity: 0.3;
+    }
+
+    25% {
+        background-position: 25% 25%, 75% 75%, 50% 0%, 50% 100%, 0% 50%;
+        opacity: 0.6;
+    }
+
+    50% {
+        background-position: 50% 50%, 50% 50%, 100% 50%, 0% 50%, 100% 0%;
+        opacity: 0.4;
+    }
+
+    75% {
+        background-position: 75% 25%, 25% 75%, 50% 100%, 50% 0%, 50% 100%;
+        opacity: 0.7;
+    }
+
+    100% {
+        background-position: 100% 0%, 0% 100%, 0% 100%, 100% 0%, 50% 50%;
+        opacity: 0.3;
+    }
 }
 
 @keyframes floatingParticles {
