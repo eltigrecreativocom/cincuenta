@@ -1,0 +1,572 @@
+<style>
+    .gold-text {
+        font-family: "Rozha One", serif;
+        font-weight: normal;
+        text-align: center;
+        color: #7D99BA;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .gold-text-gradient {
+        font-weight: normal;
+        text-align: center;
+        background: linear-gradient(45deg, #5A7A9A 0%, #7D99BA 20%, #A0C4E0 40%, #C8E0F5 50%, #A0C4E0 60%, #7D99BA 80%, #5A7A9A 100%);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: goldFlow 4s ease-in-out infinite;
+    }
+
+    .purple-text {
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes goldShine {
+
+        0%,
+        100% {
+            filter: brightness(1) contrast(1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        50% {
+            filter: brightness(1.2) contrast(1.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(125, 153, 186, 0.5);
+        }
+    }
+
+    @keyframes goldFlow {
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+
+    /* modal */
+    .modal {
+        position: fixed;
+        z-index: 99997;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+    }
+
+    .modal .elementor-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .modal.closing {
+        opacity: 0;
+        transform: scale(0.95);
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .modal::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /*background: linear-gradient(45deg, rgba(249, 250, 251, 0.8), rgba(125, 153, 186, 0.3), rgba(249, 250, 251, 0.9), rgba(125, 153, 186, 0.2));
+        background-size: 400% 400%;*/
+        animation: gradientShift 8s ease-in-out infinite;
+        z-index: 1;
+    }
+
+    .modal::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(2px 2px at 20px 30px, rgba(125, 153, 186, 0.8), transparent), radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent), radial-gradient(1px 1px at 90px 40px, rgba(125, 153, 186, 0.9), transparent), radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(2px 2px at 160px 30px, rgba(125, 153, 186, 0.7), transparent);
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: sparkle 6s linear infinite;
+        z-index: 2;
+        opacity: 0.7;
+    }
+
+    .modal .lineas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        z-index: 3;
+        animation: pulseGlow 3s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px rgba(125, 153, 186, 0.6));
+    }
+
+    .modal .nombre {
+        width: 80%;
+        z-index: 4;
+        position: relative;
+        animation: floatIn 2s ease-out;
+        filter: drop-shadow(0 0 30px rgba(125, 153, 186, 0.8));
+    }
+
+    .modal .nombre::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(45deg, transparent, rgba(125, 153, 186, 0.4), transparent);
+        animation: shine 3s ease-in-out infinite;
+        border-radius: 20px;
+        z-index: -1;
+    }
+
+    .modal .carta {
+        max-width: 100%;
+        z-index: 5;
+        position: relative;
+        animation: bounceIn 1.5s ease-out 0.5s both;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+    }
+
+    .modal .carta:hover {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 20px rgba(125, 153, 186, 0.8));
+    }
+
+    .modal .carta:active {
+        transform: scale(0.95) rotate(-2deg);
+    }
+
+    .modal button {
+        all: unset;
+        cursor: pointer;
+        display: inline-grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #7D99BA;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.15s ease, background 0.15s;
+
+        &:hover {
+            background: rgb(109, 135, 166);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .modal button {
+        position: relative;
+        z-index: 6;
+        background: linear-gradient(135deg, #7D99BA 0%, rgb(160, 196, 224) 50%, #7D99BA 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px rgba(125, 153, 186, 0.3), 0 0 0 8px rgba(125, 153, 186, 0.1), 0 15px 35px rgba(0, 0, 0, 0.5);
+        animation: buttonPulse 2s ease-in-out infinite;
+    }
+
+    .modal button::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        border: 3px solid transparent;
+        border-top: 3px solid rgba(125, 153, 186, 0.8);
+        border-right: 3px solid rgba(125, 153, 186, 0.4);
+        border-radius: 50%;
+        animation: rotate 2s linear infinite;
+    }
+
+    .modal button::after {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        background-image: radial-gradient(1px 1px at 10px 10px, rgba(125, 153, 186, 0.8), transparent), radial-gradient(1px 1px at 30px 20px, rgba(255, 255, 255, 0.6), transparent), radial-gradient(1px 1px at 50px 30px, rgba(125, 153, 186, 0.9), transparent);
+        animation: particleFloat 3s ease-in-out infinite;
+        border-radius: 50%;
+    }
+
+    .modal button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 6px rgba(125, 153, 186, 0.4), 0 0 0 12px rgba(125, 153, 186, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+        animation: buttonHover 0.6s ease-out infinite alternate;
+    }
+
+    /* ANIMACIONES ESTILO TIKTOK */
+    @keyframes gradientShift {
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+    @keyframes sparkle {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.7;
+        }
+
+        25% {
+            transform: translateY(-10px) rotate(90deg);
+            opacity: 1;
+        }
+
+        50% {
+            transform: translateY(-5px) rotate(180deg);
+            opacity: 0.8;
+        }
+
+        75% {
+            transform: translateY(-15px) rotate(270deg);
+            opacity: 0.9;
+        }
+    }
+
+    @keyframes pulseGlow {
+
+        0%,
+        100% {
+            filter: drop-shadow(0 0 20px rgba(125, 153, 186, 0.6));
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+            filter: drop-shadow(0 0 40px rgba(125, 153, 186, 0.9));
+            transform: translate(-50%, -50%) scale(1.02);
+        }
+    }
+
+    @keyframes floatIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+            filter: blur(10px);
+        }
+
+        50% {
+            opacity: 0.8;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes shine {
+
+        0%,
+        100% {
+            opacity: 0;
+            transform: translateX(-100%) skewX(-15deg);
+        }
+
+        50% {
+            opacity: 1;
+            transform: translateX(100%) skewX(-15deg);
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3) rotate(-180deg);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.1) rotate(-90deg);
+        }
+
+        70% {
+            transform: scale(0.9) rotate(-45deg);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    @keyframes buttonPulse {
+
+        0%,
+        100% {
+            box-shadow: 0 0 0 4px rgba(125, 153, 186, 0.3), 0 0 0 8px rgba(125, 153, 186, 0.1), 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        50% {
+            box-shadow: 0 0 0 6px rgba(125, 153, 186, 0.5), 0 0 0 12px rgba(125, 153, 186, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes particleFloat {
+
+        0%,
+        100% {
+            opacity: 0.6;
+            transform: scale(1) rotate(0deg);
+        }
+
+        33% {
+            opacity: 1;
+            transform: scale(1.2) rotate(120deg);
+        }
+
+        66% {
+            opacity: 0.8;
+            transform: scale(0.8) rotate(240deg);
+        }
+    }
+
+    @keyframes buttonHover {
+        0% {
+            filter: brightness(1) hue-rotate(0deg);
+        }
+
+        100% {
+            filter: brightness(1.2) hue-rotate(10deg);
+        }
+    }
+
+    /* EFECTOS ADICIONALES PARA MÓVIL */
+    @media (max-width: 768px) {
+        .modal .nombre {
+            width: 85%;
+        }
+
+        .modal .carta {
+            max-width: 100%;
+        }
+
+        .modal button {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    /* MODAL DE YAPE */
+    .modal-yape {
+        position: fixed;
+        z-index: 99998;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        transform: scale(0.9);
+        visibility: hidden;
+        transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+    }
+
+    .modal-yape.show {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+
+    .modal-yape.closing {
+        opacity: 0;
+        transform: scale(0.95);
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* LIGHTBOX PARA EFECTO FADE SIMPLE */
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        width: 100%;
+        height: 100vh;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .lightbox.fade-opening {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lightbox.fade-closing {
+        opacity: 0;
+        visibility: hidden;
+    }
+</style>
+<!-- Modal de bienvenida -->
+<div id="modal-invitacion" class="modal" data-modal="welcome">
+    <video class="elementor-video"
+        src="https://invitarte.lat/wp-content/uploads/2025/11/invideo-ai-1080-8-Seconds-of-Pure-Beach-Calm-Top-Down-A-2025-11-06.mp4"
+        autoplay loop muted playsinline controlslist="nodownload"></video>
+    <h2>Nuestra boda</h2>
+    <p>6 de febrero del 2026</p>
+
+
+
+    <div class="elementor-element elementor-element-789676e elementor-widget elementor-widget-heading" data-id="789676e"
+        data-element_type="widget" data-widget_type="heading.default">
+        <h2 class="elementor-heading-title elementor-size-default">Hildaluz y<br> Nestor</h2>
+    </div>
+    <br>
+    <button id="btn-ver-invitacion"><img
+            src="https://invitarte.lat/wp-content/uploads/2025/11/Gemini_Generated_Image_ow48auow48auow48.png"
+            class="carta" alt=""></button>
+
+</div>
+
+<!-- Reproductor de música -->
+<div class="player" role="region" style="display: none;" aria-label="Reproductor de música">
+    <audio id="audio" preload="metadata">
+        <source src="https://invitarte.lat/wp-content/uploads/2025/11/Fonseca-Que-Suerte-Tenerte-Audio-7HfabBDl_-o.mp3"
+            type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="playPause" aria-label="Reproducir" title="Reproducir">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+        </svg>
+    </button>
+</div>
+<script>
+    // Cerrar el modal al hacer clic en cualquier parte y reproducir la canción
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modal-invitacion');
+        const audio = document.getElementById('audio');
+        const player = document.querySelector('.player');
+        const playPauseBtn = document.getElementById('playPause');
+
+        // Iconos para el botón del reproductor
+        const playSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7L8 5z" fill="currentColor"/></svg>`;
+        const pauseSVG = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>`;
+
+        // Asegurar estado inicial del botón
+        if (playPauseBtn) {
+            playPauseBtn.innerHTML = playSVG;
+            playPauseBtn.setAttribute('aria-label', 'Reproducir');
+        }
+
+        function closeModalAndPlay() {
+            if (!modal || modal.classList.contains('closing')) return;
+
+            // Iniciar cierre con animación
+            modal.classList.add('closing');
+
+            // Al terminar la transición, ocultar completamente
+            setTimeout(() => {
+                modal.style.display = 'none';
+
+                // Mostrar el reproductor (opcional, para poder pausar)
+                if (player) {
+                    player.style.display = 'flex';
+                }
+
+                // Reproducir música (permitido por interacción del usuario)
+                if (audio) {
+                    audio.play()
+                        .then(() => {
+                            if (playPauseBtn) {
+                                playPauseBtn.innerHTML = pauseSVG;
+                                playPauseBtn.setAttribute('aria-label', 'Pausar');
+                            }
+                        })
+                        .catch(err => {
+                            console.log('No se pudo iniciar la reproducción automática:', err);
+                        });
+                }
+            }, 500); // Debe coincidir con la duración de .modal.closing en CSS
+        }
+
+        // Click en cualquier parte del modal
+        if (modal) {
+            modal.addEventListener('click', closeModalAndPlay);
+        }
+
+        // Mantener soporte del botón por si existe (evita doble propagación)
+        const btnVer = document.getElementById('btn-ver-invitacion');
+        if (btnVer) {
+            btnVer.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeModalAndPlay();
+            });
+        }
+
+        // Control play/pause manual del botón del reproductor
+        if (playPauseBtn && audio) {
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        playPauseBtn.innerHTML = pauseSVG;
+                        playPauseBtn.setAttribute('aria-label', 'Pausar');
+                    }).catch(() => { /* Silenciar bloqueo si no hay interacción */ });
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = playSVG;
+                    playPauseBtn.setAttribute('aria-label', 'Reproducir');
+                }
+            });
+        }
+    });
+</script>

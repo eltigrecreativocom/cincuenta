@@ -1,0 +1,27 @@
+<!-- COMPONENTE MODAL DE INVITACIÓN -->
+<!-- Modal de bienvenida con efectos especiales -->
+<div id="modal-invitacion" class="modal" data-modal="welcome">
+    <h2>Estás invitado</h2>
+    <p>Una celebración muy especial te espera</p>
+    <img src="lineas.svg" class="lineas" alt="">
+    <img src="nombres.svg" class="nombre" alt="">
+    <br>
+    <br>
+    <button id="btn-ver-invitacion"><img src="cartas.png" class="carta" alt=""></button>
+</div>
+
+<!-- Lightbox para efecto fade -->
+<div class="lightbox" id="fade-lightbox"></div>
+
+<!-- Reproductor de música -->
+<div class="player" role="region" style="display: none;" aria-label="Reproductor de música">
+    <audio id="audio" preload="metadata">
+        <source src="musica.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="playPause" aria-label="Reproducir" title="Reproducir">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+        </svg>
+    </button>
+</div>

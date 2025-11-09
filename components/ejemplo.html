@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo - Modal de Invitación</title>
+
+    <!-- CSS del componente -->
+    <link rel="stylesheet" href="modal-invitacion.css">
+
+    <!-- Estilos adicionales de ejemplo -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        #contenido {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+
+        #contenido.contenido-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .main-content h1.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .main-content p.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+
+        .info-box.animate-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .info-box h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            margin-top: 20px;
+        }
+
+        .cta-button.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- COMPONENTE: Modal de Invitación -->
+    <div id="modal-invitacion" class="modal" data-modal="welcome">
+        <h2>¡Bienvenido!</h2>
+        <p>Este es un ejemplo del componente reutilizable</p>
+        <img src="../lineas.svg" class="lineas" alt="">
+        <img src="../nombres.svg" class="nombre" alt="">
+        <br><br>
+        <button id="btn-ver-invitacion">
+            <img src="../cartas.png" class="carta" alt="">
+        </button>
+    </div>
+
+    <!-- Lightbox para efecto fade -->
+    <div class="lightbox" id="fade-lightbox"></div>
+
+    <!-- Reproductor de música -->
+    <div class="player" role="region" style="display: none;" aria-label="Reproductor de música">
+        <audio id="audio" preload="metadata">
+            <source src="../musica.mp3" type="audio/mp3">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+        <button id="playPause" aria-label="Reproducir" title="Reproducir">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="contenido">
+        <div class="main-content">
+            <h1>Componente Modal Reutilizable</h1>
+            <p>Este es un ejemplo de cómo usar el componente de modal de invitación en tu proyecto.</p>
+
+            <div class="info-box">
+                <h2>🎉 Características</h2>
+                <p>
+                    ✨ Animaciones fluidas<br>
+                    🎵 Reproductor de música integrado<br>
+                    📱 Diseño responsive<br>
+                    ⚙️ Fácilmente personalizable
+                </p>
+            </div>
+
+            <a href="#" class="cta-button">Ver Documentación</a>
+        </div>
+    </div>
+
+    <!-- JavaScript del componente -->
+    <script src="modal-invitacion.js"></script>
+
+    <!-- Script de ejemplo personalizado (opcional) -->
+    <script>
+        // Puedes sobrescribir la configuración por defecto
+        // Descomenta y personaliza según necesites:
+
+        /*
+        document.addEventListener('DOMContentLoaded', () => {
+            window.modalInvitacion = new ModalInvitacion({
+                autoplay: true,
+                showPlayer: true,
+                elementosAnimacion: [
+                    { selector: '.main-content h1', delay: 500 },
+                    { selector: '.main-content p', delay: 800 },
+                    { selector: '.info-box', delay: 1100 },
+                    { selector: '.cta-button', delay: 1400 }
+                ]
+            });
+        });
+        */
+    </script>
+</body>
+
+</html>
